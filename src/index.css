@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .max-container {
+    @apply mx-auto sm:max-w-[780px] max-w-[390px];
+  }
+}
+
+@layer utilities {
+  .title {
+    @apply font-roboto  sm:text-6xl text-3xl  font-medium;
+  }
+
+  .btn-title {
+    @apply font-roboto  sm:text-4xl text-2xl font-bold;
+  }
+  .text {
+    @apply font-roboto text-black text-lg leading-7;
+  }
+
+  .p-nav {
+    @apply sm:px-16 px-8 sm:py-7 py-3;
+  }
+
+  .space-between {
+    @apply justify-between items-center flex-row flex;
+  }
+
+  .btn {
+    @apply sm:py-3 py-1 sm:px-7 px-4;
+  }
+}
+
+color {
+  color: rgb(228, 191, 168);
+}
+
+.bg-orange {
+  background: #f85d03;
+  box-shadow: inset 5px 5px 10px #b04202, inset -5px -5px 10px #ff7804;
+}
+
+.btn-orange-off {
+  border-radius: 12px;
+  background: linear-gradient(315deg, #ff6403, #df5403);
+  box-shadow: -5px -5px 10px #b04202, 5px 5px 10px #ff7804;
+}
+
+.btn-orange-on {
+  border-radius: 12px;
+  background: #f85d03;
+  box-shadow: inset -5px -5px 10px #b04202, inset 5px 5px 10px #ff7804;
+}
