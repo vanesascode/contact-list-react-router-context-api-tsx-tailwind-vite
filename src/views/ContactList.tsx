@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Contact from "../components/Contact.tsx";
+import ContactCard from "../components/ContactCard.tsx";
 
 interface ContactInterface {
   id: number;
@@ -52,17 +52,17 @@ const ContactList = () => {
 
   return (
     <>
-      {/* tasks*/}
+      <div className="background">
+        {/* {!contactList && <div>Loading contact list...</div>} */}
+        {contactList && contactList.length === 0 && (
+          <h1>Loading contact list...</h1>
+        )}
 
-      {/* {!contactList && <div>Loading contact list...</div>} */}
-      {contactList && contactList.length === 0 && (
-        <h1>Loading contact list...</h1>
-      )}
-
-      {contactList &&
-        contactList.map((contact) => (
-          <Contact key={contact.id} contact={contact} />
-        ))}
+        {contactList &&
+          contactList.map((contact) => (
+            <ContactCard key={contact.id} contact={contact} />
+          ))}
+      </div>
     </>
   );
 };

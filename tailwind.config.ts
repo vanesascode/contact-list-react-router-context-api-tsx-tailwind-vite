@@ -6,6 +6,9 @@ export default {
       colors: {
         clear: "rgb(251, 221, 202)",
         orange: "rgb(248, 93, 3)",
+        clearblue: "#d9e2eb",
+        mediumblue: "#b2c5d4",
+        semiblue: "#a3afb9",
       },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],

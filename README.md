@@ -69,3 +69,43 @@ Add new changes to the live URL
 - [x] Run: `now --prod` Then, changes are saved in the same URL you published before.
 
 ---
+
+## 🌟REACT-ROUTER
+
+- [x] Install: `npm install react-router-dom`
+- [x] Import: `import { BrowserRouter, Route, Switch } from 'react-router-dom';`
+
+- [x] Create your Router in the higher component. Set the components you always want to appear, outsite of the Routes wrapping:
+
+```
+function App() {
+
+  return (
+    <>
+      <div>
+        <Router>
+        <Navbar />
+          <Routes>
+            <Route path="/" element={<ContactList />} />
+            <Route path="/new" element={<ContactForm />} />
+          </Routes>
+        <Footer/>
+        </Router>
+      </div>
+    </>
+  );
+}
+```
+
+### useNavigate (function to go to another path)
+
+To be able to use it, the component has to be inside the `Router` wrapping.
+
+```
+import { useNavigate } from "react-router-dom";
+
+const handleClick = () => {
+    navigate("/new");
+  };
+
+```
