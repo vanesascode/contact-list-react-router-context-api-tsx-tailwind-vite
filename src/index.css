@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -9,58 +10,103 @@
   .max-container {
     @apply mx-auto sm:max-w-[780px] max-w-[391px];
   }
-}
 
-@layer utilities {
-  .title {
-    @apply font-ubuntu  sm:text-[50px] text-[28px]  font-medium text-clear;
+  .f-center {
+    @apply flex justify-center items-center;
   }
 
-  .btn-title {
-    @apply font-ubuntu  sm:text-4xl text-[22px] font-bold text-clear;
-  }
-  .text {
-    @apply font-ubuntu text-black text-lg leading-7;
-  }
-
-  .p-nav {
-    @apply sm:px-8 px-3 sm:py-4 py-2;
+  .f-start {
+    @apply flex justify-start items-center;
   }
 
   .space-between {
     @apply justify-between items-center flex-row flex;
   }
+}
 
-  .btn {
-    @apply sm:py-4 py-1 sm:px-6 px-3;
-  }
+@layer utilities {
+  /*************************** NAVBAR ********************************/
 
   .logo {
-    @apply sm:w-[40px] w-[20px] sm:h-[40px] h-[20px];
+    @apply sm:w-[50px] w-[28px] sm:h-[50px] h-[28px];
   }
 
-  .background {
-    @apply bg-clearblue sm:px-8 px-3 sm:py-4 py-2 md:min-h-[500px] min-h-[775px];
+  .title {
+    @apply sm:text-[45px] text-[25px]  font-semibold text-white font-roboto;
+  }
+
+  .text-shadow {
+    text-shadow: 1px 1px 5px #b99784b5;
+  }
+
+  .btn {
+    @apply sm:pb-[10px] pb-[5px] sm:pt-[12px] pt-[6px]   sm:px-8 px-4 rounded-[5px] sm:rounded-[10px] flex items-center;
+  }
+
+  .btn-text {
+    @apply sm:text-[35px] text-[18px] font-bold text-white;
+  }
+
+  .p-nav {
+    @apply sm:px-4 px-2 sm:pt-[12px] pt-[10px] sm:pb-[11px] pb-[8px];
+  }
+
+  .bg-orange {
+    background: #f85d03;
+    box-shadow: inset 5px 5px 10px #b04202, inset -5px -5px 10px #ff7804;
+  }
+
+  .btn-orange-off {
+    background: linear-gradient(315deg, #df5403, #ff6403);
+    box-shadow: 3px 3px 10px #7c2f02, -3px -3px 15px rgba(247, 110, 25, 0.269);
+  }
+
+  .btn-orange-on {
+    background: #f85d03;
+    box-shadow: inset 5px 5px 10px #b04202,
+      inset -5px -5px 10px rgba(242, 137, 71, 0.628);
+  }
+
+  /**************************** BODY *******************************/
+
+  .bg-box {
+    @apply bg-clearblue sm:px-5 px-4 sm:py-5 py-4 md:min-h-[500px] min-h-[775px];
+  }
+
+  /**************************** CARD *******************************/
+
+  /* Header*/
+
+  .bg-header {
+    background: linear-gradient(315deg, #f3f1f1, #fffdfd);
+    box-shadow: inset 1px 1px 40px 10px #a3a3a318;
+  }
+
+  .contact-name {
+    @apply text-black sm:text-[37px] text-[15px]  font-bold;
+  }
+
+  /* Labels */
+
+  .bg-label {
+    background: linear-gradient(315deg, hsl(0, 100%, 99%), #fffdfd);
+    box-shadow: inset -5px 5px 8px #94aabc;
+  }
+
+  .bg-label-info {
+    background: linear-gradient(315deg, hsl(0, 100%, 99%), #fffdfd);
+    box-shadow: inset 0px 5px 8px #94aabc;
+  }
+
+  .label-name {
+    @apply text-semiblue sm:text-[24px] text-[12px]  font-bold;
+  }
+
+  .label-info {
+    @apply sm:text-[30px] text-[15px]  font-semibold;
   }
 }
 
 color {
-  color: rgb(251, 221, 202);
-}
-
-.bg-orange {
-  background: #f85d03;
-  box-shadow: inset 5px 5px 10px #b04202, inset -5px -5px 10px #ff7804;
-}
-
-.btn-orange-off {
-  border-radius: 12px;
-  background: linear-gradient(315deg, #ff6403, #df5403);
-  box-shadow: -5px -5px 10px #b04202, 5px 5px 10px #ff7804;
-}
-
-.btn-orange-on {
-  border-radius: 12px;
-  background: #f85d03;
-  box-shadow: inset -5px -5px 10px #b04202, inset 5px 5px 10px #ff7804;
+  color: #95aec2;
 }

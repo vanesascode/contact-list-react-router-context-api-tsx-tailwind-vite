@@ -1,39 +1,60 @@
 import logo from "../assets/logo-black.png";
 import { useNavigate } from "react-router-dom";
+// import { ContactInterface } from "../context/ContactsContext.tsx";
 
 type NavbarProps = {
   buttonOn: boolean;
   setButtonOn: (value: boolean) => void;
 };
 
-const Navbar = ({ buttonOn, setButtonOn }: NavbarProps) => {
-  const navigate = useNavigate();
+// interface ContactProps {
+//   contact: ContactInterface;
+// }
 
-  const handleClick = () => {
-    setButtonOn(!buttonOn);
-    navigate(buttonOn ? "/" : "/new");
-  };
+const Navbar = ({ buttonOn, setButtonOn }: NavbarProps) =>
+  // { contact }: ContactProps
+  {
+    const navigate = useNavigate();
 
-  return (
-    <>
-      <div className=" bg-orange p-nav space-between">
-        <div className="flex items-center gap-3" onClick={() => navigate("/")}>
-          <img src={logo} alt="logo" className="logo invert" />
-          <h1 className="title">
-            {buttonOn ? "New contact" : "My contact list"}
-          </h1>
+    const handleButton = () => {
+      setButtonOn(!buttonOn);
+      navigate(buttonOn ? "/" : "/new");
+    };
+
+    const handleTitle = () => {
+      setButtonOn((buttonOn = false));
+      navigate("/");
+    };
+
+    return (
+      <>
+        <div className=" bg-orange p-nav space-between items-end">
+          <div
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={handleTitle}
+          >
+            <img
+              src={logo}
+              alt="logo"
+              className="logo invert ms-1 "
+              style={{ alignSelf: "flex-start" }}
+            />
+            <p className="title text-shadow capitalize">
+              {buttonOn ? "New contact" : "vanesascode agenda"}
+              {/* {contact.agenda_slug} */}
+            </p>
+          </div>
+          <button
+            className={`btn btn-text ${
+              buttonOn ? "btn-orange-on" : "btn-orange-off"
+            }`}
+            onClick={handleButton}
+          >
+            {buttonOn ? "Return" : "Add"}
+          </button>
         </div>
-        <button
-          className={`btn btn-title ${
-            buttonOn ? "btn-orange-on" : "btn-orange-off"
-          }`}
-          onClick={handleClick}
-        >
-          {buttonOn ? "Return" : "Add"}
-        </button>
-      </div>
-    </>
-  );
-};
+      </>
+    );
+  };
 
 export default Navbar;
