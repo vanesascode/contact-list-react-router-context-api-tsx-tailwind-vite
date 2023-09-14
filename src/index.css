@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -12,18 +13,18 @@
 
 @layer utilities {
   .title {
-    @apply font-roboto  sm:text-6xl text-3xl  font-medium;
+    @apply font-ubuntu  sm:text-[50px] text-[28px]  font-medium text-clear;
   }
 
   .btn-title {
-    @apply font-roboto  sm:text-4xl text-2xl font-bold;
+    @apply font-ubuntu  sm:text-4xl text-[22px] font-bold text-clear;
   }
   .text {
-    @apply font-roboto text-black text-lg leading-7;
+    @apply font-ubuntu text-black text-lg leading-7;
   }
 
   .p-nav {
-    @apply sm:px-16 px-8 sm:py-7 py-3;
+    @apply sm:px-8 px-3 sm:py-4 py-2;
   }
 
   .space-between {
@@ -31,12 +32,16 @@
   }
 
   .btn {
-    @apply sm:py-3 py-1 sm:px-7 px-4;
+    @apply sm:py-4 py-1 sm:px-6 px-3;
+  }
+
+  .logo {
+    @apply sm:w-[40px] w-[20px] sm:h-[40px] h-[20px];
   }
 }
 
 color {
-  color: rgb(228, 191, 168);
+  color: rgb(251, 221, 202);
 }
 
 .bg-orange {

@@ -4,11 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        clear: "rgb(228, 191, 168)",
+        clear: "rgb(251, 221, 202)",
         orange: "rgb(248, 93, 3)",
       },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
+        ubuntu: ["Ubuntu", "sans-serif"],
       },
     },
   },
