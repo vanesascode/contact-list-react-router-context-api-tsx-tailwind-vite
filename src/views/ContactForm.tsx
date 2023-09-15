@@ -1,9 +1,11 @@
 import avatar2 from "../assets/avatar2.png";
 import { useRef, FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 
 ///////////////////////////////////////////////////////////
 
 const ContactForm = () => {
+  const navigate = useNavigate();
   const nameRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
   const emaillRef = useRef<HTMLInputElement>(null);
@@ -16,70 +18,82 @@ const ContactForm = () => {
     const email = emaillRef.current?.value;
     const address = addressRef.current?.value;
     console.log(name, phone, email, address);
+    navigate("/");
   };
 
   return (
     <div className="bg-box">
       <form onSubmit={handleSubmit}>
-        <div className="mb-4 sm:mb-8">
+        <div>
           {/*HEADER */}
 
-          <div className="flex  justify-between items-center px-3 sm:px-6 py-2 sm:py-3 rounded-t-lg sm:rounded-t-xl border-b-[3px] sm:border-b-[6px] border-b-blue bg-header">
+          <div className="flex justify-between items-center px-3 sm:px-6 py-4 sm:py-6 rounded-t-lg sm:rounded-t-xl border-b-[3px] sm:border-b-[6px] border-b-blue bg-header mt-2">
             {/*Content*/}
 
-            <div className="flex items-center gap-2">
-              <div className=" rounded-[6px] sm:rounded-[8px] bg-mediumblue px-1 sm:px2 pt-1 sm:pt-2 border-2 sm:border-4  border-semiblue">
+            <div className="flex items-center gap-4">
+              <div className=" rounded-[6px] sm:rounded-[8px] bg-mediumblue pt-0 sm:pt-1 px-1 sm:px-2  border-2 sm:border-4  border-semiblue w-[15%] flex justify-center">
                 <img
                   src={avatar2}
                   alt="app logo"
-                  className="object-contain w-[18px] sm:w-[65px] h-[18px] sm:h-[65px]  sm:mb-[-1px]"
+                  className="object-contain w-[60px] sm:w-[85px] h-[48px] sm:h-[85px] sm:mb-[-6px] mb-[-6.5px]"
                 />
               </div>
-              <h2 className="contact-name text-shadow">
-                <input type="text" ref={nameRef} />
-              </h2>
+
+              <input
+                type="text"
+                ref={nameRef}
+                className="bg-transparent input-name text-shadow w-[85%]"
+                placeholder="&nbsp;Contact Name"
+              />
             </div>
           </div>
 
           {/*PHONE LABEL*/}
 
           <div className="flex">
-            <div className="  h-[50px] sm:h-[100px] bg-header bg-label label-name f-center px-4 sm:px-8 w-[80px] sm:w-[160px]">
-              Phone
-              <br />
-              Number
-            </div>
-            <div className="   h-[50px] sm:h-[100px] label-info bg-label-info flex-1 px-4 sm:px-8 f-start">
-              <input type="text" ref={phoneRef} />
+            <div className="h-[75px] sm:h-[125px] label-info bg-label-info flex-1 px-4 sm:px-8 f-start ">
+              <input
+                type="text"
+                ref={phoneRef}
+                className="bg-transparent w-[100%] input-name text-shadow"
+                placeholder="&nbsp;&nbsp;Phone Number"
+              />
             </div>
           </div>
 
           {/*EMAIL LABEL*/}
 
           <div className="flex">
-            <div className="   h-[50px] sm:h-[100px] bg-header bg-label label-name f-center px-4  sm:px-8 w-[80px] sm:w-[160px]">
-              Email
-              <br />
-              Address
-            </div>
-            <div className="  h-[50px] sm:h-[100px] label-info bg-label-info flex-1 px-4 sm:px-8 f-start text-shadow">
-              <input type="text" ref={emaillRef} />
+            <div className="h-[75px] sm:h-[125px] label-info bg-label-info flex-1 px-4 sm:px-8 f-start ">
+              <input
+                type="text"
+                ref={emaillRef}
+                className="bg-transparent w-[100%] input-name text-shadow"
+                placeholder="&nbsp;&nbsp;Email Address"
+              />
             </div>
           </div>
 
           {/*ADDRESS LABEL*/}
 
           <div className="flex rounded-b-lg sm:rounded-b-xl">
-            <div className="   h-[50px] sm:h-[100px] bg-header bg-label label-name f-center px-4  sm:px-8 w-[80px] sm:w-[160px] rounded-bl-lg sm:rounded-bl-xg">
-              Home
-              <br />
-              Address
-            </div>
-            <div className="  h-[50px] sm:h-[100px] label-info bg-label-info flex-1 px-4 sm:px-8 f-start text-shadow rounded-br-lg sm:rounded-br-xg">
-              <input type="text" ref={addressRef} />
+            <div className="h-[75px] sm:h-[125px] label-info bg-label-info flex-1 px-4 sm:px-8 f-start  rounded-br-lg sm:rounded-br-xg">
+              <input
+                type="text"
+                ref={addressRef}
+                className="bg-transparent w-[100%] input-name text-shadow"
+                placeholder="&nbsp;&nbsp;Home Address"
+              />
             </div>
           </div>
-          <button type="submit">Submit</button>
+          <div className="f-center mt-10">
+            <button
+              type="submit"
+              className="btn btn-orange-input btn-text text-shadow"
+            >
+              Submit
+            </button>
+          </div>
         </div>
       </form>
     </div>

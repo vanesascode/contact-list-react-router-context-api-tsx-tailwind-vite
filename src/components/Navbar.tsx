@@ -1,4 +1,4 @@
-import logo from "../assets/logo-black.png";
+import logo from "../assets/agenda.svg";
 import { useNavigate } from "react-router-dom";
 // import { ContactInterface } from "../context/ContactsContext.tsx";
 
@@ -33,19 +33,15 @@ const Navbar = ({ buttonOn, setButtonOn }: NavbarProps) =>
             className="flex items-center gap-2 cursor-pointer"
             onClick={handleTitle}
           >
-            <img
-              src={logo}
-              alt="logo"
-              className="logo invert ms-1 "
-              style={{ alignSelf: "flex-start" }}
-            />
+            <img src={logo} alt="logo" className="logo invert ms-1 " />
+
             <p className="title text-shadow capitalize">
-              {buttonOn ? "New contact" : "vanesascode agenda"}
+              {buttonOn ? "New contact" : "your contact list"}
               {/* {contact.agenda_slug} */}
             </p>
           </div>
           <button
-            className={`btn btn-text ${
+            className={`btn btn-text text-shadow ${
               buttonOn ? "btn-orange-on" : "btn-orange-off"
             }`}
             onClick={handleButton}

@@ -17,11 +17,11 @@ const ContactCard = ({ contact }: ContactProps) => {
           {/*Content left*/}
 
           <div className="flex items-center gap-2">
-            <div className=" rounded-[6px] sm:rounded-[8px] bg-mediumblue px-1 sm:px2 pt-1 sm:pt-2 border-2 sm:border-4  border-semiblue">
+            <div className=" rounded-[6px] sm:rounded-[8px] bg-mediumblue px-[3px] sm:px2 pt-1 sm:pt-2 border-2 sm:border-4  border-semiblue">
               <img
                 src={avatar2}
                 alt="app logo"
-                className="object-contain w-[18px] sm:w-[65px] h-[18px] sm:h-[65px]  sm:mb-[-1px]"
+                className="object-contain w-[18px] sm:w-[65px] h-[18px] sm:h-[65px]  sm:mb-[-1.5px] mb-[-0.5px]"
               />
             </div>
             <h2 className="contact-name text-shadow">{contact.full_name}</h2>
