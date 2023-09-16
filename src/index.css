@@ -6,9 +6,13 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  background-color: rgb(32, 31, 31);
+}
+
 @layer components {
   .max-container {
-    @apply mx-auto sm:max-w-[780px] max-w-[391px];
+    @apply mx-auto sm:max-w-[1024px] max-w-[391px];
   }
 
   .f-center {
@@ -26,6 +30,13 @@
   .text-shadow {
     text-shadow: 0.5px 0.5px 4px #b99784b5;
   }
+
+  .up {
+    transition: all 0.3s;
+  }
+  .up:hover {
+    transform: translateY(-5px);
+  }
 }
 
 @layer utilities {
@@ -39,6 +50,14 @@
     @apply sm:text-[45px] text-[25px]  font-semibold text-white font-roboto;
   }
 
+  .links-nav {
+    @apply text-[25px]  font-normal text-white font-roboto;
+  }
+
+  .links-hamburger {
+    @apply text-[20px] sm:text-[30px] font-semibold text-white font-roboto;
+  }
+
   .btn {
     @apply sm:pb-[10px] pb-[5px] sm:pt-[12px] pt-[6px]   sm:px-8 px-4 rounded-[5px] sm:rounded-[10px] flex items-center;
   }
@@ -48,7 +67,7 @@
   }
 
   .p-nav {
-    @apply sm:px-4 px-2 sm:pt-[13px] pt-[11px] sm:pb-[12px] pb-[9px];
+    @apply sm:px-6 px-3 sm:pt-[13px] pt-[11px] sm:pb-[12px] pb-[9px];
   }
 
   .bg-orange {
@@ -70,7 +89,7 @@
   /**************************** BODY *******************************/
 
   .bg-box {
-    @apply bg-clearblue sm:px-5 px-4 sm:py-8 py-5 md:min-h-[500px] min-h-[775px];
+    @apply bg-clearblue sm:px-5 px-4 sm:py-8 py-5 md:min-h-[500px] min-h-[640px];
   }
 
   /**************************** CARD *******************************/
@@ -83,7 +102,7 @@
   }
 
   .contact-name {
-    @apply text-black sm:text-[37px] text-[15px]  font-bold;
+    @apply text-black  text-[20px]  font-bold; /*sm:text-[37px]*/
   }
 
   /* Labels */
@@ -99,11 +118,11 @@
   }
 
   .label-name {
-    @apply text-semiblue sm:text-[24px] text-[12px]  font-bold;
+    @apply text-semiblue  text-[12px]  font-bold; /*sm:text-[24px]*/
   }
 
   .label-info {
-    @apply sm:text-[30px] text-[15px]  font-semibold;
+    @apply text-[15px]  font-semibold; /*sm:text-[30px]*/
   }
 
   color {
@@ -121,10 +140,6 @@
     color: #a3afb9;
   }
 
-  .input-name {
-    @apply text-black sm:text-[47px] text-[25px]  font-bold;
-  }
-
   .input-btn {
     @apply sm:pb-[15px] pb-[10px] sm:pt-[17px] pt-[11px]   sm:px-8 px-4 rounded-[10px] sm:rounded-[15px] flex items-center;
   }
@@ -136,5 +151,17 @@
   .btn-orange-input {
     background: linear-gradient(315deg, #df5403, #ff6403);
     box-shadow: 4px 4px 10px #562203;
+  }
+
+  /**************************** FOOTER *******************************/
+
+  .signature {
+    @apply sm:text-[28px] text-[19px]  font-semibold text-white font-roboto;
+  }
+}
+
+@media (max-width: 640px) {
+  .fa-2xl {
+    font-size: 2.15rem;
   }
 }

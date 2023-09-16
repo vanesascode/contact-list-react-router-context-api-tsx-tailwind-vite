@@ -109,3 +109,64 @@ const handleClick = () => {
   };
 
 ```
+
+## 🌟CONTEXT-API
+
+- [x] Create a separate file and import { createContext } (in this case it is in the `DataContext.tsx` file, in the folder `context`)
+
+- [x] Create a `Context`. With Typescript, you'll first need to create a context type:
+
+```
+interface DataContextType {
+  contactList: ContactInterface[] | null;
+  setContactList: Dispatch<React.SetStateAction<ContactInterface[]>>;
+  buttonOn: boolean;
+  setButtonOn: Dispatch<React.SetStateAction<boolean>>;
+}
+
+//CONTEXT://
+
+const DataContext = createContext<DataContextType>({
+  contactList: null,
+  setContactList: () => {},
+  buttonOn: false,
+  setButtonOn: () => {},
+});
+```
+
+- [x] Create a `Provider` function with all the states you want to store in you context api.
+
+- [x] In you return, wrap children with the Provider:
+
+```
+  return (
+    <DataContext.Provider
+      value={{ contactList, setContactList, buttonOn, setButtonOn }}
+    >
+      {children}
+    </DataContext.Provider>
+  );
+
+```
+
+- [x] In your `App.tsx` file or in your higher one in the tree, wrap all the components you want to benefit from the context api with the provider:
+
+```
+return (
+    <>
+      <div className="sm:max-container">
+        {/* ROUTES */}
+        <Router>
+          <DataProvider>
+            {/* NAVBAR */}
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<ContactList />} />
+              <Route path="/new" element={<ContactForm />} />
+            </Routes>
+          </DataProvider>
+        </Router>
+      </div>
+    </>
+  );
+```

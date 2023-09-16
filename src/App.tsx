@@ -1,28 +1,31 @@
-import { useState } from "react";
+// import { useState } from "react";
 import Navbar from "./components/Navbar";
 import ContactList from "./views/ContactList";
 import ContactForm from "./views/ContactForm";
+// import Home from "./views/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { ContactsProvider } from "./context/ContactsContext";
+import { DataProvider } from "./context/DataContext";
+import Footer from "./components/Footer";
 
 function App() {
-  //{ contact }: ContactProps
-  const [buttonOn, setButtonOn] = useState<boolean>(false);
   return (
     <>
       <div className="sm:max-container">
         {/* ROUTES */}
         <Router>
-          <ContactsProvider>
+          <DataProvider>
             {/* NAVBAR */}
-            <Navbar buttonOn={buttonOn} setButtonOn={setButtonOn} />
+            <Navbar />
 
             <Routes>
               <Route path="/" element={<ContactList />} />
-              <Route path="/new" element={<ContactForm />} />
+              <Route path="/newcontact" element={<ContactForm />} />
+              {/* <Route path="/newagenda" element={<ContactForm />} /> */}
+              {/* <Route path="/agenda/:id" element={<ContactList />} /> */}
             </Routes>
-          </ContactsProvider>
+          </DataProvider>
         </Router>
+        <Footer />
       </div>
     </>
   );
