@@ -42,9 +42,9 @@ const Navbar = () => {
               <p className="font-bold up">New contact</p>
             </li>
           </Link>
-          <Link to="/newagenda">
+          <Link to="/agendas">
             <li className="me-3">
-              <p className="font-bold up ">New agenda</p>
+              <p className="font-bold up ">My agendas</p>
             </li>
           </Link>
           <li className="me-3 font-bold up">
@@ -77,9 +77,9 @@ const Navbar = () => {
                   <p onClick={handleLinkClick}>New contact</p>
                 </li>
               </Link>
-              <Link to="/newagenda">
+              <Link to="/agendas">
                 <li>
-                  <p onClick={() => setButtonOn(false)}>New agenda</p>
+                  <p onClick={() => setButtonOn(false)}>My agendas</p>
                 </li>
               </Link>
               <li>

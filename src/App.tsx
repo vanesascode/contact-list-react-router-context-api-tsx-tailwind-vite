@@ -2,7 +2,7 @@
 import Navbar from "./components/Navbar";
 import ContactList from "./views/ContactList";
 import ContactForm from "./views/ContactForm";
-// import Home from "./views/Home";
+import Home from "./views/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { DataProvider } from "./context/DataContext";
 import Footer from "./components/Footer";
@@ -20,8 +20,8 @@ function App() {
             <Routes>
               <Route path="/" element={<ContactList />} />
               <Route path="/newcontact" element={<ContactForm />} />
-              {/* <Route path="/newagenda" element={<ContactForm />} /> */}
-              {/* <Route path="/agenda/:id" element={<ContactList />} /> */}
+              <Route path="/agendas" element={<Home />} />
+              <Route path="/agenda/:agenda_slug" element={<ContactList />} />
             </Routes>
           </DataProvider>
         </Router>

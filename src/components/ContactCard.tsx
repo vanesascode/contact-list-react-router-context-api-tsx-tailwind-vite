@@ -13,21 +13,13 @@ interface ContactProps {
 const ContactCard = ({ contact }: ContactProps) => {
   const { deleteContact, updateContact } = useContext(DataContext);
 
-  const handleDelete = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    deleteContact(contact.id);
-  };
-
   const [editing, setEditing] = useState(false);
   const [updatedName, setUpdatedName] = useState<string>(contact.full_name);
   const [updatedPhone, setUpdatedPhone] = useState<string>(contact.phone);
   const [updatedAddress, setUpdatedAddress] = useState<string>(contact.address);
   const [updatedEmail, setUpdatedEmail] = useState<string>(contact.email);
 
-  const handleEdit = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    setEditing(true);
-  };
+  //INPUTS:
 
   const handleInputChangeName = (e: ChangeEvent<HTMLInputElement>) => {
     setUpdatedName(e.target.value);
@@ -43,6 +35,18 @@ const ContactCard = ({ contact }: ContactProps) => {
 
   const handleInputChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setUpdatedEmail(e.target.value);
+  };
+
+  //ACTIONS:
+
+  const handleEdit = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setEditing(true);
+  };
+
+  const handleDelete = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    deleteContact(contact.id);
   };
 
   const handleSave = (e: MouseEvent<HTMLButtonElement>) => {
