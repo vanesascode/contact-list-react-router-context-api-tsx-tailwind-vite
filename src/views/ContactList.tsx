@@ -6,7 +6,7 @@ import plus from "../assets/plus.svg";
 import { useParams } from "react-router-dom";
 
 const ContactList = () => {
-  const { agenda_slug } = useParams();
+  const { agendaNameSlug } = useParams();
   const navigate = useNavigate();
 
   const handleCreateContact = () => {
@@ -18,13 +18,12 @@ const ContactList = () => {
   return (
     <>
       <div className="bg-box">
-        <div className="relative">
-          <div className="sm:grid-rows-2 sm:grid sm:grid-flow-col gap-6">
+        <div className="relative ">
+          <div className="sm:grid-cols-2 sm:grid  gap-6">
             {!contactList && <div>Loading...</div>}
             {contactList && contactList.length === 0 && (
-              <h1>Loading{agenda_slug} agenda...</h1>
+              <h1>Loading {agendaNameSlug} agenda...</h1>
             )}
-
             {contactList &&
               contactList.map((contact) => (
                 <ContactCard key={contact.id} contact={contact} />

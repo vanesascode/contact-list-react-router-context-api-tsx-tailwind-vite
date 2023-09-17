@@ -6,12 +6,23 @@ import DataContext from "../context/DataContext.tsx";
 import { useContext } from "react";
 
 const Navbar = () => {
-  const { buttonOn, setButtonOn, titleChange, setTitleChange } =
+  const { buttonOn, setButtonOn, titleChange, setTitleChange, agendaNameSlug } =
     useContext(DataContext);
 
   const handleLinkClick = () => {
     setTitleChange(true);
     setButtonOn(false);
+  };
+
+  const handleLinksClick2 = () => {
+    setButtonOn(false);
+    setTitleChange(false);
+  };
+
+  const handleLinksClick3 = () => {
+    setButtonOn(false);
+    setTitleChange(false);
+    // navigate("/agenda");
   };
 
   return (
@@ -26,7 +37,9 @@ const Navbar = () => {
             <img src={logo} alt="logo" className="logo invert  " />
 
             <p className="title text-shadow capitalize">
-              {titleChange ? "New contact" : "your contact list"}
+              {titleChange
+                ? "New contact"
+                : { agendaNameSlug } && `${agendaNameSlug} list`}
               {/* {contact.agenda_slug} */}
             </p>
           </div>
@@ -42,14 +55,18 @@ const Navbar = () => {
               <p className="font-bold up">New contact</p>
             </li>
           </Link>
-          <Link to="/agendas">
+          <Link to="/newagenda">
             <li className="me-3">
-              <p className="font-bold up ">My agendas</p>
+              <p className="font-bold up ">New agenda</p>
             </li>
           </Link>
-          <li className="me-3 font-bold up">
-            <a href="#about">About</a>
+          {/* <Link to="/agenda"> */}
+          <li className="me-3">
+            <a href="/agenda">
+              <p className="font-bold up ">Agendas</p>
+            </a>
           </li>
+          {/* </Link> */}
         </ul>
 
         {/* LINKS WHEN SCREEN SMALL */}
@@ -77,16 +94,18 @@ const Navbar = () => {
                   <p onClick={handleLinkClick}>New contact</p>
                 </li>
               </Link>
-              <Link to="/agendas">
+              <Link to="/newagenda">
                 <li>
-                  <p onClick={() => setButtonOn(false)}>My agendas</p>
+                  <p onClick={handleLinksClick2}>New Agenda</p>
                 </li>
               </Link>
+              {/* <Link to="/agenda"> */}
               <li>
-                <a href="#about" onClick={() => setButtonOn(false)}>
-                  About
+                <a href="/agenda">
+                  <p onClick={handleLinksClick3}>Agendas</p>
                 </a>
               </li>
+              {/* </Link> */}
             </ul>
           </div>
         </div>
