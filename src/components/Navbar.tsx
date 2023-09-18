@@ -1,22 +1,34 @@
 import logo from "../assets/agenda.svg";
 import hamburger from "../assets/hamburger.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import DataContext from "../context/DataContext.tsx";
 import { useContext } from "react";
 
 const Navbar = () => {
+  // CONTEXT ////////////////////////////////
+
   const { buttonOn, setButtonOn, titleChange, setTitleChange, agendaNameSlug } =
     useContext(DataContext);
 
+  //NAVIGATE ////////////////////////////
+
+  const Navigate = useNavigate();
+
   const handleLinkClick = () => {
-    setTitleChange(true);
+    setTitleChange(false);
     setButtonOn(false);
+    if (agendaNameSlug) {
+      Navigate("/newcontact");
+    } else {
+      alert("Please, first choose an agenda");
+      Navigate("/agenda");
+    }
   };
 
   const handleLinksClick2 = () => {
     setButtonOn(false);
-    setTitleChange(false);
+    setTitleChange(true);
   };
 
   const handleLinksClick3 = () => {
@@ -38,9 +50,8 @@ const Navbar = () => {
 
             <p className="title text-shadow capitalize">
               {titleChange
-                ? "New contact"
-                : { agendaNameSlug } && `${agendaNameSlug} list`}
-              {/* {contact.agenda_slug} */}
+                ? "New agenda"
+                : { agendaNameSlug } && `${agendaNameSlug} contact list`}
             </p>
           </div>
         </Link>
@@ -49,20 +60,21 @@ const Navbar = () => {
 
         {/* LINKS WHEN SCREEN BIG */}
 
-        <ul className="flex-1 flex justify-end items-center xl:gap-10 sm:gap-8 max-lg:hidden gap-5  links-nav ">
-          <Link to="/newcontact">
-            <li className="me-3">
-              <p className="font-bold up">New contact</p>
-            </li>
-          </Link>
+        <ul className="flex-1 flex justify-end items-center xl:gap-8 sm:gap-2 max-lg:hidden gap-5  links-nav ">
+          <li className="me-3" onClick={handleLinkClick}>
+            <p className="font-bold up cursor-pointer">New contact</p>
+          </li>
+
           <Link to="/newagenda">
             <li className="me-3">
-              <p className="font-bold up ">New agenda</p>
+              <p className="font-bold up " onClick={handleLinksClick2}>
+                New agenda
+              </p>
             </li>
           </Link>
           {/* <Link to="/agenda"> */}
           <li className="me-3">
-            <a href="/agenda">
+            <a href="/">
               <p className="font-bold up ">Agendas</p>
             </a>
           </li>
@@ -89,11 +101,10 @@ const Navbar = () => {
           >
             {/* Links */}
             <ul className="list-none flex items-center flex-1 flex-col links-hamburger justify-center gap-3 sm:gap-4 ">
-              <Link to="/newcontact">
-                <li>
-                  <p onClick={handleLinkClick}>New contact</p>
-                </li>
-              </Link>
+              <li>
+                <p onClick={handleLinkClick}>New contact</p>
+              </li>
+
               <Link to="/newagenda">
                 <li>
                   <p onClick={handleLinksClick2}>New Agenda</p>
@@ -101,7 +112,7 @@ const Navbar = () => {
               </Link>
               {/* <Link to="/agenda"> */}
               <li>
-                <a href="/agenda">
+                <a href="/">
                   <p onClick={handleLinksClick3}>Agendas</p>
                 </a>
               </li>

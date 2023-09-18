@@ -12,7 +12,7 @@
 
 @layer components {
   .max-container {
-    @apply mx-auto sm:max-w-[1024px] max-w-[391px];
+    @apply mx-auto sm:max-w-[1280px] max-w-[391px];
   }
 
   .f-center {
@@ -51,7 +51,7 @@
   }
 
   .links-nav {
-    @apply text-[25px]  font-normal text-white font-roboto;
+    @apply lg:text-[20px] xl:text-[25px] font-normal text-white font-roboto;
   }
 
   .links-hamburger {
@@ -89,7 +89,7 @@
   /**************************** BODY *******************************/
 
   .bg-box {
-    @apply bg-clearblue sm:px-5 px-4 sm:py-8 py-5 md:min-h-[350px] min-h-[600px];
+    @apply bg-clearblue sm:px-5 px-4 sm:py-8 py-5 md:min-h-[480px] min-h-[620px];
   }
 
   /**************************** CARD *******************************/
@@ -162,14 +162,18 @@
   /**************************** FOOTER *******************************/
 
   .signature {
-    @apply sm:text-[28px] text-[19px]  font-semibold text-white font-roboto;
+    @apply sm:text-[23px] text-[16px]  font-semibold text-white font-roboto;
   }
 }
 
 /*****************************************  */
 
+.fa-2xl {
+  font-size: 2.5rem;
+}
+
 @media (max-width: 640px) {
   .fa-2xl {
-    font-size: 2.15rem;
+    font-size: 2rem;
   }
 }

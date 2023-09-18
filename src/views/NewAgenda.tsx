@@ -10,7 +10,8 @@ const NewAgenda = () => {
 
   // CONTEXT //////////////////////////////////////////////////////////
 
-  const { addAgenda, setAgendaNameSlug } = useContext(DataContext);
+  const { addAgenda, setAgendaNameSlug, setTitleChange } =
+    useContext(DataContext);
 
   // ADD AGENDA ///////////////////////////////////////////////////////
 
@@ -25,10 +26,10 @@ const NewAgenda = () => {
     const phone = "";
     if (newAgenda.trim() !== "") {
       addAgenda(fullname, email, agendaslug, address, phone);
-
-      navigate(`/agenda/${agendaslug}`);
-
       setnewAgenda("");
+      setAgendaNameSlug(agendaslug);
+      navigate(`/agenda/${agendaslug}`);
+      setTitleChange(false);
     }
   };
 

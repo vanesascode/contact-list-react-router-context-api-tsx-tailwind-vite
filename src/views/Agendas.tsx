@@ -1,19 +1,14 @@
 import { useContext, MouseEvent, useEffect } from "react";
 import DataContext from "../context/DataContext.tsx";
 import avatar2 from "../assets/avatar2.png";
-import deletePic from "../assets/delete.svg";
+
 import { useNavigate } from "react-router-dom";
 
 const Agendas = () => {
   //CONTEXT ////////////////////////////////////////////////////////////////////
 
-  const {
-    deleteAgenda,
-    setAgendaNameSlug,
-    fetchContactList,
-    agendaNameSlug,
-    agendaList,
-  } = useContext(DataContext);
+  const { setAgendaNameSlug, fetchContactList, agendaNameSlug, agendaList } =
+    useContext(DataContext);
 
   //////////////////////////////////////////////////////////////////////////
 
@@ -22,15 +17,6 @@ const Agendas = () => {
   const navigate = useNavigate();
 
   // FUNCTIONS ///////////////////////////////////////////////////////////////////
-
-  // DELETE AGENDA ///////////////////////////////////////////////////////
-
-  const handleDeleteAgenda = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    if (agendaNameSlug) {
-      deleteAgenda(agendaNameSlug);
-    }
-  };
 
   // GET SLUG OF AGENDA ////////////////////////////////////////////
 
@@ -76,12 +62,12 @@ const Agendas = () => {
           <div>No agendas were found. Please create a new one.</div>
         )}
         {agendaList && agendaList.length === 0 && (
-          <div>
+          <div className=" f-center">
             <h1 className="title">Loading...</h1>
-            <p>
+            {/* <p>
               If it takes too long, refresh. Maybe it's because no agendas were
               found. Then, please create a new one.
-            </p>
+            </p> */}
           </div>
         )}
 
@@ -101,17 +87,10 @@ const Agendas = () => {
                         className="object-contain w-[18px]  h-[18px]  mb-[-0.5px]"
                       />
                     </div>
-                    <div onClick={handleGetAgendaSlug}>{contact}</div>
+                    <div onClick={handleGetAgendaSlug} className="contact-name">
+                      {contact}
+                    </div>
                   </div>
-
-                  {/*Content right*/}
-
-                  <button
-                    onClick={handleDeleteAgenda}
-                    className="cursor-pointer"
-                  >
-                    <img src={deletePic} alt="delete contact" />
-                  </button>
                 </div>
               </div>
             ))}

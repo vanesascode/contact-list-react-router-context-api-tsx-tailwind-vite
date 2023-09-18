@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect, Dispatch, ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface DataContextType {
   setContactList: Dispatch<React.SetStateAction<ContactInterface[]>>;
@@ -30,7 +31,7 @@ interface DataContextType {
 
   deleteContact: (id: number) => void;
 
-  deleteAgenda: (agendaSlug: string) => void;
+  deleteAgenda: (agendaNameSlug: string) => void;
 
   updateContact: (
     fullName: string | undefined,
@@ -93,6 +94,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
 
   ////////////////////////////////////////////////////////////////////////////////
 
+  const navigate = useNavigate();
   ////////////////////////////////////////////////////////////////////////////////
 
   // API REQUESTS: /////////////////////////////////////////////////////////
@@ -100,16 +102,16 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
   // GET ALL THE AGENDAS //
 
   const fetchAgendaList = () => {
-    // setTimeout(() => {
-    fetch("https://playground.4geeks.com/apis/fake/contact/agenda")
-      .then((response) => response.json())
-      .then((result) => {
-        //functions together, or problems:
-        setAgendaList(result);
-        // console.log(result);
-      })
-      .catch((error) => console.log("Error:", error));
-    // }, 1000);
+    setTimeout(() => {
+      fetch("https://playground.4geeks.com/apis/fake/contact/agenda")
+        .then((response) => response.json())
+        .then((result) => {
+          //functions together, or problems:
+          setAgendaList(result);
+          // console.log(result);
+        })
+        .catch((error) => console.log("Error:", error));
+    }, 1000);
   };
 
   ///////////////////////////////////////////////////////////////////////////
@@ -131,6 +133,9 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
       agenda_slug: agendaslug || "",
     };
     console.log(newAgenda);
+    console.log(newAgenda.agenda_slug);
+    setAgendaNameSlug(newAgenda.agenda_slug);
+    console.log(agendaNameSlug); // no funciona
 
     fetch("https://playground.4geeks.com/apis/fake/contact", {
       method: "POST",
@@ -142,6 +147,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
       .then((response) => response.json())
       .then((result) => {
         console.log(result); //{msg: 'Contact created successfully'}
+
         fetchAgendaList();
       })
       .catch((error) => {
@@ -149,13 +155,19 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
       });
   };
 
+  //Porque actua al refrescarse, si no hay cambio de agendaNAmeSlug?
+  useEffect(() => {
+    setAgendaNameSlug(agendaNameSlug);
+    console.log(agendaNameSlug);
+  }, [agendaNameSlug]);
+
   //////////////////////////////////////////////////////////////////////////////
 
   //DELETE AGENDA //
 
-  const deleteAgenda = (agendaSlug: string) => {
+  const deleteAgenda = (agendaNameSlug: string) => {
     fetch(
-      `https://playground.4geeks.com/apis/fake/contact/agenda/${agendaSlug}`,
+      `https://playground.4geeks.com/apis/fake/contact/agenda/${agendaNameSlug}`,
       {
         method: "DELETE",
         redirect: "follow",
@@ -168,6 +180,9 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
       .then((response) => response.text()) // If it's not text, it gives a JSON error
       .then((result) => {
         console.log(result);
+        setAgendaNameSlug(""); //solucion!!!! para que al eliminar se vaya otra vez a la pagina:
+        navigate(`/agenda`);
+        console.log(agendaNameSlug);
         fetchAgendaList();
       })
       .catch((error) => {
@@ -175,8 +190,13 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
       });
   };
 
+  /////////////////////////////////////////////////////////////////////
+
+  // It loads the contacts of an agenda once it is created(in fact, when there's a change in the agendaList):
+
   useEffect(() => {
     fetchContactList();
+    // navigate(`/`);
   }, [agendaList]);
 
   ///////////////////////////////////////////////////////////////////////////////
@@ -196,8 +216,8 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
           // console.log(result);
         })
         .catch((error) => console.log("Error:", error));
-      // }, 1000);
     }
+    // }, 1000);
   };
 
   // useEffect(() => {
@@ -257,6 +277,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
       .then((result) => {
         console.log(result);
         fetchContactList();
+        console.log(agendaNameSlug);
       })
       .catch((error) => {
         console.log("Error:", error);

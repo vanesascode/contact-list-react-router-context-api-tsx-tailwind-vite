@@ -5,7 +5,7 @@ const Footer = () => {
         {/*TOP*/}
 
         <ul className="flex-1 f-center sm:gap-7 gap-5 links-nav">
-          <li className="sm:my-3 ">
+          <li className="sm:my-1 ">
             <a
               href="https://github.com/vanesascode"
               target="_blank"
@@ -18,7 +18,7 @@ const Footer = () => {
             </a>
           </li>
 
-          <li className="sm:my-3 ">
+          <li className="sm:my-1 ">
             <a
               href="https://www.linkedin.com/in/vanesajuarezparis/"
               target="_blank"
@@ -31,7 +31,7 @@ const Footer = () => {
             </a>
           </li>
 
-          <li className="sm:my-3 ">
+          <li className="sm:my-1 ">
             <a href="mailto:vanesascode@gmail.com?subject=&body=">
               <i
                 className="fa-solid fa-envelope fa-2xl up"
@@ -45,7 +45,7 @@ const Footer = () => {
       {/*BOTTOM */}
 
       <div className="f-center gap-2 cursor-pointer p-nav bg-black ">
-        <p className="signature text-shadow capitalize py-1">
+        <p className="signature text-shadow capitalize ">
           <a
             href="https://github.com/vanesascode"
             target="_blank"

@@ -12,8 +12,13 @@ const ContactForm = () => {
   const emaillRef = useRef<HTMLInputElement>(null);
   const addressRef = useRef<HTMLInputElement>(null);
 
-  const { addContact, setButtonOn, setTitleChange, agendaNameSlug } =
-    useContext(DataContext);
+  const {
+    addContact,
+    setButtonOn,
+    setTitleChange,
+    agendaNameSlug,
+    setAgendaNameSlug,
+  } = useContext(DataContext);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,13 +30,14 @@ const ContactForm = () => {
     );
     setButtonOn(false);
     setTitleChange(false);
-
+    console.log(agendaNameSlug);
     navigate(`/agenda/${agendaNameSlug}`);
   };
 
   const handleReturn = () => {
+    setAgendaNameSlug("");
     setTitleChange(false);
-    navigate("/");
+    navigate("/agenda");
   };
 
   return (
@@ -111,6 +117,7 @@ const ContactForm = () => {
             >
               Submit
             </button>
+
             <button
               onClick={handleReturn}
               className="btn btn-orange-input btn-text text-shadow"
