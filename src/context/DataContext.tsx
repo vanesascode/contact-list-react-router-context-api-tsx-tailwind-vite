@@ -1,18 +1,45 @@
 import { createContext, useState, useEffect, Dispatch, ReactNode } from "react";
-import { useNavigate } from "react-router-dom";
+
+// INTERFACES////////////////////////////////////////////////////////////////////////
+
+export interface ContactInterface {
+  id: number;
+  full_name: string;
+  email: string;
+  phone: string;
+  address: string;
+  agenda_slug: string;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////
 
 interface DataContextType {
-  setContactList: Dispatch<React.SetStateAction<ContactInterface[]>>;
   buttonOn: boolean;
   setButtonOn: Dispatch<React.SetStateAction<boolean>>;
+
   titleChange: boolean;
   setTitleChange: Dispatch<React.SetStateAction<boolean>>;
+
   agendaNameSlug: string;
   setAgendaNameSlug: Dispatch<React.SetStateAction<string>>;
 
   agendaList: string[] | null;
   setAgendaList: Dispatch<React.SetStateAction<string[]>>;
+
   contactList: ContactInterface[] | null;
+  setContactList: Dispatch<React.SetStateAction<ContactInterface[]>>;
+
+  modalEliminateContact: boolean;
+  setModalEliminateContact: Dispatch<React.SetStateAction<boolean>>;
+
+  modalEliminateAgenda: boolean;
+  setModalEliminateAgenda: Dispatch<React.SetStateAction<boolean>>;
+
+  alertChooseAgenda: boolean;
+  setAlertChooseAgenda: Dispatch<React.SetStateAction<boolean>>;
+
+  agendaDeleted: boolean;
+  setAgendaDeleted: Dispatch<React.SetStateAction<boolean>>;
 
   addAgenda: (
     fullName: string | undefined,
@@ -66,16 +93,15 @@ const DataContext = createContext<DataContextType>({
   fetchContactList: () => {},
   fetchAgendaList: () => {},
   setAgendaList: () => {},
+  modalEliminateContact: false,
+  setModalEliminateContact: () => {},
+  modalEliminateAgenda: false,
+  setModalEliminateAgenda: () => {},
+  alertChooseAgenda: false,
+  setAlertChooseAgenda: () => {},
+  agendaDeleted: false,
+  setAgendaDeleted: () => {},
 });
-
-export interface ContactInterface {
-  id: number;
-  full_name: string;
-  email: string;
-  phone: string;
-  address: string;
-  agenda_slug: string;
-}
 
 // PROVIDER////////////////////////////////////////////////////////////////////////
 
@@ -92,12 +118,17 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
 
   const [agendaNameSlug, setAgendaNameSlug] = useState<string>("");
 
-  ////////////////////////////////////////////////////////////////////////////////
+  const [modalEliminateContact, setModalEliminateContact] = useState(false);
 
-  const navigate = useNavigate();
-  ////////////////////////////////////////////////////////////////////////////////
+  const [modalEliminateAgenda, setModalEliminateAgenda] = useState(false);
 
-  // API REQUESTS: /////////////////////////////////////////////////////////
+  const [alertChooseAgenda, setAlertChooseAgenda] = useState(false);
+
+  const [agendaDeleted, setAgendaDeleted] = useState(false);
+
+  ////////////////////////////////////////////////////////////////////////////////////////
+
+  // API REQUESTS: ///////////////////////////////////////////////////////////////////////
 
   // GET ALL THE AGENDAS //
 
@@ -180,8 +211,8 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
       .then((response) => response.text()) // If it's not text, it gives a JSON error
       .then((result) => {
         console.log(result);
-        setAgendaNameSlug(""); //solucion!!!! para que al eliminar se vaya otra vez a la pagina:
-        navigate(`/agenda`);
+        //solucion!!!! para que al eliminar se vaya otra vez a la pagina:
+        setAgendaNameSlug("");
         console.log(agendaNameSlug);
         fetchAgendaList();
       })
@@ -189,15 +220,6 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
         console.log("Error:", error);
       });
   };
-
-  /////////////////////////////////////////////////////////////////////
-
-  // It loads the contacts of an agenda once it is created(in fact, when there's a change in the agendaList):
-
-  useEffect(() => {
-    fetchContactList();
-    // navigate(`/`);
-  }, [agendaList]);
 
   ///////////////////////////////////////////////////////////////////////////////
 
@@ -324,9 +346,15 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
 
   ////////////////////////////////////////////////////////////////////////////////
 
+  // It loads the contacts of an agenda once it is created(in fact, when there's a change in the agendaList):
+
+  useEffect(() => {
+    fetchContactList();
+  }, [agendaList]);
+
   ////////////////////////////////////////////////////////////////////////////////
 
-  //ONCE APP IS ON//
+  //ONCE APP IS ON:
 
   useEffect(() => {
     fetchAgendaList();
@@ -356,6 +384,14 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
         fetchContactList,
         fetchAgendaList,
         setAgendaList,
+        modalEliminateAgenda,
+        setModalEliminateAgenda,
+        modalEliminateContact,
+        setModalEliminateContact,
+        alertChooseAgenda,
+        setAlertChooseAgenda,
+        agendaDeleted,
+        setAgendaDeleted,
       }}
     >
       {children}

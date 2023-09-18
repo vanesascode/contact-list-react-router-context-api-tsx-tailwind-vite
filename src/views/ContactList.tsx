@@ -1,5 +1,5 @@
 import deletePic from "../assets/delete.svg";
-import { useContext, MouseEvent, useState } from "react";
+import { useContext } from "react";
 import ContactCard from "../components/ContactCard.tsx";
 import DataContext from "../context/DataContext.tsx";
 import { useNavigate } from "react-router-dom";
@@ -17,25 +17,13 @@ const ContactList = () => {
 
   // CONTEXT
 
-  const { contactList, deleteAgenda } = useContext(DataContext);
-
-  //STATES
-
-  const [agendaDeleted, setAgendaDeleted] = useState(false);
+  const { contactList, agendaDeleted, setModalEliminateAgenda } =
+    useContext(DataContext);
 
   // FUNCTIONS
 
   const handleCreateContact = () => {
     navigate("/newcontact");
-  };
-
-  const handleDeleteAgenda = (e: MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    if (agendaNameSlug) {
-      deleteAgenda(agendaNameSlug);
-      setAgendaDeleted(true);
-      navigate("/");
-    }
   };
 
   //////////////////////////////////////////////////////////////////
@@ -72,9 +60,10 @@ const ContactList = () => {
 
         {/*DELETE AGENDA*/}
 
-        <a
-          href="/"
-          onClick={handleDeleteAgenda}
+        <div
+          // href="/"
+          // onClick={handleDeleteAgenda}
+          onClick={() => setModalEliminateAgenda(true)}
           className="cursor-pointer flex justify-start sm:justify-center gap-2 mt-[100px] mb-1"
         >
           <img
@@ -85,7 +74,7 @@ const ContactList = () => {
           <p className="contact-name capitalize">
             Delete {agendaNameSlug} agenda
           </p>
-        </a>
+        </div>
       </div>
     </>
   );

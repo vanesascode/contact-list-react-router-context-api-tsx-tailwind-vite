@@ -5,7 +5,7 @@ import DataContext from "../context/DataContext.tsx";
 
 ///////////////////////////////////////////////////////////
 
-const ContactForm = () => {
+const NewContact = () => {
   const navigate = useNavigate();
   const nameRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
@@ -131,4 +131,4 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm;
+export default NewContact;

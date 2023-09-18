@@ -2,38 +2,45 @@
 
 import Navbar from "./components/Navbar";
 import ContactList from "./views/ContactList";
-import ContactForm from "./views/ContactForm";
+import NewContact from "./views/NewContact.tsx";
 import Agendas from "./views/Agendas";
 import NewAgenda from "./views/NewAgenda";
 import Footer from "./components/Footer";
-// import Home from "./views/Home";
+import ModalEliminateAgenda from "./components/ModalEliminateAgenda";
 
 // ROUTES AND CONTEXT
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { DataProvider } from "./context/DataContext";
+import DataContext from "./context/DataContext.tsx";
+import { useContext } from "react";
 
 function App() {
+  // CONTEXT
+
+  const { modalEliminateAgenda } = useContext(DataContext);
+
   return (
     <>
-      <div className="sm:max-container">
-        {/* ROUTES */}
-        <Router>
-          <DataProvider>
-            {/* NAVBAR */}
-            <Navbar />
+      <Router>
+        {modalEliminateAgenda && (
+          <div className="modal-overlay">
+            <ModalEliminateAgenda />
+          </div>
+        )}
 
-            <Routes>
-              <Route path="/" element={<Agendas />} />
-              <Route path="/newcontact" element={<ContactForm />} />
-              <Route path="/newagenda" element={<NewAgenda />} />
-              <Route path="/agenda" element={<Agendas />} />
-              <Route path="/agenda/:agendaNameSlug" element={<ContactList />} />
-            </Routes>
-          </DataProvider>
-        </Router>
-        <Footer />
-      </div>
+        <div className="sm:max-container">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Agendas />} />
+            <Route path="/newcontact" element={<NewContact />} />
+            <Route path="/newagenda" element={<NewAgenda />} />
+            <Route path="/agenda" element={<Agendas />} />
+            <Route path="/agenda/:agendaNameSlug" element={<ContactList />} />
+          </Routes>
+
+          <Footer />
+        </div>
+      </Router>
     </>
   );
 }
