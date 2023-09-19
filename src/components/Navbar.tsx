@@ -8,8 +8,14 @@ import { useContext } from "react";
 const Navbar = () => {
   // CONTEXT ////////////////////////////////
 
-  const { buttonOn, setButtonOn, titleChange, setTitleChange, agendaNameSlug } =
-    useContext(DataContext);
+  const {
+    buttonOn,
+    setButtonOn,
+    titleChange,
+    setTitleChange,
+    agendaNameSlug,
+    setAlertChooseAgenda,
+  } = useContext(DataContext);
 
   //NAVIGATE ////////////////////////////
 
@@ -21,7 +27,7 @@ const Navbar = () => {
     if (agendaNameSlug) {
       Navigate("/newcontact");
     } else {
-      alert("Please, first choose an agenda");
+      setAlertChooseAgenda(true);
       Navigate("/agenda");
     }
   };

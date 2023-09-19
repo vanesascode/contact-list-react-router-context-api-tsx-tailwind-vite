@@ -7,6 +7,8 @@ import Agendas from "./views/Agendas";
 import NewAgenda from "./views/NewAgenda";
 import Footer from "./components/Footer";
 import ModalEliminateAgenda from "./components/ModalEliminateAgenda";
+// import ModalEliminateContact from "./components/ModalEliminateContact";
+import AlertChooseAgenda from "./components/AlertChooseAgenda.tsx";
 
 // ROUTES AND CONTEXT
 
@@ -17,7 +19,7 @@ import { useContext } from "react";
 function App() {
   // CONTEXT
 
-  const { modalEliminateAgenda } = useContext(DataContext);
+  const { modalEliminateAgenda, alertChooseAgenda } = useContext(DataContext); //modalEliminateContact,
 
   return (
     <>
@@ -25,6 +27,18 @@ function App() {
         {modalEliminateAgenda && (
           <div className="modal-overlay">
             <ModalEliminateAgenda />
+          </div>
+        )}
+
+        {/* {modalEliminateContact && (
+          <div className="modal-overlay">
+            <ModalEliminateContact />
+          </div>
+        )} */}
+
+        {alertChooseAgenda && (
+          <div className="modal-overlay">
+            <AlertChooseAgenda />
           </div>
         )}
 
