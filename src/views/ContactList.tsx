@@ -1,5 +1,5 @@
 import deletePic from "../assets/delete.svg";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import ContactCard from "../components/ContactCard.tsx";
 import DataContext from "../context/DataContext.tsx";
 import { useNavigate } from "react-router-dom";
@@ -11,14 +11,29 @@ const ContactList = () => {
 
   const { agendaNameSlug } = useParams();
 
+  useEffect(() => {
+    fetch(
+      `https://playground.4geeks.com/apis/fake/contact/agenda/${agendaNameSlug}`
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        setContactList(result);
+      })
+      .catch((error) => console.log("Error:", error));
+  }, [agendaNameSlug]);
+
   // NAVIGATE
 
   const navigate = useNavigate();
 
   // CONTEXT
 
-  const { contactList, agendaDeleted, setModalEliminateAgenda } =
-    useContext(DataContext);
+  const {
+    contactList,
+    agendaDeleted,
+    setModalEliminateAgenda,
+    setContactList,
+  } = useContext(DataContext);
 
   // FUNCTIONS
 

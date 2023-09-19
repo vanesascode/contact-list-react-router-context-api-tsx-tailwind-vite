@@ -74,9 +74,9 @@ const Agendas = () => {
         {/* LIST OF AGENDAS */}
         <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 ">
           {agendaList &&
-            agendaList.map((contact, value) => (
+            agendaList.map((agenda, value) => (
               <div className="max-sm:mb-4" key={value}>
-                <div className="flex justify-between items-center px-3 sm:px-6 py-3 sm:py-5 rounded-t-lg sm:rounded-t-xl border-b-[3px] sm:border-b-[6px] border-b-blue bg-header w-[100%]">
+                <div className="flex justify-between items-center px-3 sm:px-6 py-3 sm:py-5 rounded-t-lg sm:rounded-t-xl border-b-[3px] sm:border-b-[6px] border-b-blue bg-header w-[100%] cursor-pointer">
                   {/*Content left*/}
 
                   <div className="flex items-center gap-2">
@@ -87,8 +87,11 @@ const Agendas = () => {
                         className="object-contain w-[18px]  h-[18px]  mb-[-0.5px]"
                       />
                     </div>
-                    <div onClick={handleGetAgendaSlug} className="contact-name">
-                      {contact}
+                    <div
+                      onClick={handleGetAgendaSlug}
+                      className="contact-name "
+                    >
+                      {agenda}
                     </div>
                   </div>
                 </div>
