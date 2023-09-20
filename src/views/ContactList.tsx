@@ -8,19 +8,13 @@ import { useParams } from "react-router-dom";
 
 const ContactList = () => {
   // ROUTES PARAMS
-
   const { agendaNameSlug } = useParams();
 
+  // The fetchContactList function is called when the component mounts. The purpose of this effect is to fetch the contact list data based on the agendaNameSlug value:
+
   useEffect(() => {
-    fetch(
-      `https://playground.4geeks.com/apis/fake/contact/agenda/${agendaNameSlug}`
-    )
-      .then((response) => response.json())
-      .then((result) => {
-        setContactList(result);
-      })
-      .catch((error) => console.log("Error:", error));
-  }, [agendaNameSlug]);
+    fetchContactList(agendaNameSlug!); //non-null assertion operator
+  }, []);
 
   // NAVIGATE
 
@@ -32,7 +26,7 @@ const ContactList = () => {
     contactList,
     agendaDeleted,
     setModalEliminateAgenda,
-    setContactList,
+    fetchContactList,
   } = useContext(DataContext);
 
   // FUNCTIONS
@@ -76,8 +70,6 @@ const ContactList = () => {
         {/*DELETE AGENDA*/}
 
         <div
-          // href="/"
-          // onClick={handleDeleteAgenda}
           onClick={() => setModalEliminateAgenda(true)}
           className="cursor-pointer flex justify-start sm:justify-center gap-2 mt-[100px] mb-1"
         >

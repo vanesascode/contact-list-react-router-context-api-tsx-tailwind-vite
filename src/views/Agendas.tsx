@@ -42,7 +42,7 @@ const Agendas = () => {
       };
 
       handleGetAgendaSlug(event as MouseEvent<HTMLParagraphElement>);
-      fetchContactList();
+      fetchContactList(agendaNameSlug);
     }
   }, [agendaNameSlug]);
 
@@ -64,10 +64,6 @@ const Agendas = () => {
         {agendaList && agendaList.length === 0 && (
           <div className=" f-center">
             <h1 className="title">Loading...</h1>
-            {/* <p>
-              If it takes too long, refresh. Maybe it's because no agendas were
-              found. Then, please create a new one.
-            </p> */}
           </div>
         )}
 

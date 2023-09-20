@@ -29,7 +29,9 @@ const AlertChooseAgenda = () => {
 
         {/*BODY*/}
         <div className="bg-modal ">
-          <p className="modal-text px-10">First choose an agenda</p>
+          <p className="modal-text ">
+            First choose an agenda or create a new one.
+          </p>
 
           {/*BUTTONS*/}
 

@@ -68,7 +68,7 @@ interface DataContextType {
     id: number
   ) => void;
 
-  fetchContactList: () => void;
+  fetchContactList: (agendaNameSlug: string) => void;
 
   fetchAgendaList: () => void;
 }
@@ -186,12 +186,6 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
       });
   };
 
-  //Porque actua al refrescarse, si no hay cambio de agendaNAmeSlug?
-  useEffect(() => {
-    setAgendaNameSlug(agendaNameSlug);
-    console.log(agendaNameSlug);
-  }, [agendaNameSlug]);
-
   //////////////////////////////////////////////////////////////////////////////
 
   //DELETE AGENDA //
@@ -225,7 +219,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
 
   // GET THE CONTACTS OF AN AGENDA //
 
-  const fetchContactList = () => {
+  const fetchContactList = (agendaNameSlug: string | null) => {
     // setTimeout(() => {
     if (agendaNameSlug) {
       fetch(
@@ -233,18 +227,14 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
       )
         .then((response) => response.json())
         .then((result) => {
-          //functions together, or problems:
           setContactList(result);
+          setAgendaNameSlug(agendaNameSlug); /////////////////////
           // console.log(result);
         })
         .catch((error) => console.log("Error:", error));
     }
     // }, 1000);
   };
-
-  // useEffect(() => {
-  //   fetchContactList();
-  // }, [agendaNameSlug]);
 
   ////////////////////////////////////////////////////////////////////////////
 
@@ -277,7 +267,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
       .then((result) => {
         console.log(result); //{msg: 'Contact created successfully'}
 
-        fetchContactList();
+        fetchContactList(agendaNameSlug);
       })
       .catch((error) => {
         console.log("Error:", error);
@@ -298,7 +288,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
-        fetchContactList();
+        fetchContactList(agendaNameSlug);
         console.log(agendaNameSlug);
       })
       .catch((error) => {
@@ -337,7 +327,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
       .then((response) => response.json())
       .then((result) => {
         console.log(result); //{msg: 'Contact created successfully'}
-        fetchContactList();
+        fetchContactList(agendaNameSlug);
       })
       .catch((error) => {
         console.log("Error:", error);
@@ -349,7 +339,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({
   // It loads the contacts of an agenda once it is created(in fact, when there's a change in the agendaList):
 
   useEffect(() => {
-    fetchContactList();
+    fetchContactList(agendaNameSlug);
   }, [agendaList]);
 
   ////////////////////////////////////////////////////////////////////////////////

@@ -1,12 +1,17 @@
 import logo from "../assets/agenda.svg";
 import hamburger from "../assets/hamburger.png";
+// import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import DataContext from "../context/DataContext.tsx";
 import { useContext } from "react";
 
+// import { useParams } from "react-router-dom";
+
 const Navbar = () => {
   // CONTEXT ////////////////////////////////
+
+  // const agendaNameSlug = useParams();
 
   const {
     buttonOn,
@@ -15,11 +20,16 @@ const Navbar = () => {
     setTitleChange,
     agendaNameSlug,
     setAlertChooseAgenda,
+    // fetchContactList,
   } = useContext(DataContext);
 
   //NAVIGATE ////////////////////////////
 
   const Navigate = useNavigate();
+
+  // useEffect(() => {
+  //   fetchContactList(agendaNameSlug);
+  // });
 
   const handleLinkClick = () => {
     setTitleChange(false);
