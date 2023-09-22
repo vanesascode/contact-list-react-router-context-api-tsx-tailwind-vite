@@ -38,45 +38,47 @@ const NewAgenda = () => {
   return (
     <>
       <div className="bg-box">
-        {/* CREATE AN AGENDA */}
-        <div className="sm:max-w-[640px] mx-auto ">
-          <div className="flex justify-between items-center px-3 sm:px-6 py-3 sm:py-5 rounded-t-lg sm:rounded-t-xl border-b-[3px] sm:border-b-[6px] border-b-blue bg-header  ">
-            {/*Content*/}
+        <div className="sm:max-container">
+          {/* CREATE AN AGENDA */}
+          <div className="sm:max-w-[640px] mx-auto ">
+            <div className="flex justify-between items-center px-3 sm:px-6 py-3 sm:py-5 rounded-t-lg sm:rounded-t-xl border-b-[3px] sm:border-b-[6px] border-b-blue bg-header  ">
+              {/*Content*/}
 
-            <div className="flex items-center gap-2 w-[100%]">
-              <div className="rounded-[6px]  bg-mediumblue px-[3px] pt-1  border-2  border-semiblue ">
-                <img
-                  src={avatar2}
-                  alt="app logo"
-                  className="object-contain w-[18px]  h-[18px]  mb-[-0.5px]"
+              <div className="flex items-center gap-2 w-[100%]">
+                <div className="rounded-[6px]  bg-mediumblue px-[3px] pt-1  border-2  border-semiblue ">
+                  <img
+                    src={avatar2}
+                    alt="app logo"
+                    className="object-contain w-[18px]  h-[18px]  mb-[-0.5px]"
+                  />
+                </div>
+
+                <input
+                  className="bg-transparent contact-name text-shadow  text-semiblue w-[100%] "
+                  type="text"
+                  value={newAgenda}
+                  onChange={(e) => setnewAgenda(e.target.value)}
+                  placeholder="&nbsp;Add a new agenda"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      handleAddAgenda();
+                    }
+                  }}
+                  autoFocus
                 />
               </div>
-
-              <input
-                className="bg-transparent contact-name text-shadow  text-semiblue w-[100%]"
-                type="text"
-                value={newAgenda}
-                onChange={(e) => setnewAgenda(e.target.value)}
-                placeholder="&nbsp;Add a new agenda"
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    handleAddAgenda();
-                  }
-                }}
-                autoFocus
-              />
             </div>
           </div>
-        </div>
 
-        {/* BUTTON */}
-        <div className="f-center mt-10">
-          <button
-            onClick={handleAddAgenda}
-            className="btn btn-orange-input btn-text text-shadow"
-          >
-            Create
-          </button>
+          {/* BUTTON */}
+          <div className="f-center mt-10">
+            <button
+              onClick={handleAddAgenda}
+              className="btn btn-orange-input btn-text text-shadow"
+            >
+              Create
+            </button>
+          </div>
         </div>
       </div>
     </>

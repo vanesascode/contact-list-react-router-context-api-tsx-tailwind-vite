@@ -52,47 +52,49 @@ const Agendas = () => {
     <>
       {/*TITLE*/}
 
-      <div className="bg-box">
-        <div className="f-center mb-4">
-          <h2 className="agendas-title">Choose an agenda:</h2>
-        </div>
-
-        {/* ERROR MESSAGES */}
-        {!agendaList && (
-          <div>No agendas were found. Please create a new one.</div>
-        )}
-        {agendaList && agendaList.length === 0 && (
-          <div className=" f-center">
-            <h1 className="title">Loading...</h1>
+      <div className="bg-box object-fill">
+        <div className="sm:max-container">
+          <div className="f-center mb-4 ">
+            <h2 className="agendas-title">Choose an agenda:</h2>
           </div>
-        )}
 
-        {/* LIST OF AGENDAS */}
-        <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 ">
-          {agendaList &&
-            agendaList.map((agenda, value) => (
-              <div className="max-sm:mb-4" key={value}>
-                <div className="flex justify-between items-center px-3 sm:px-6 py-3 sm:py-5 rounded-t-lg sm:rounded-t-xl border-b-[3px] sm:border-b-[6px] border-b-blue bg-header w-[100%] cursor-pointer">
-                  {/*Content left*/}
+          {/* ERROR MESSAGES */}
+          {!agendaList && (
+            <div>No agendas were found. Please create a new one.</div>
+          )}
+          {agendaList && agendaList.length === 0 && (
+            <div className=" f-center">
+              <h1 className="title">Loading...</h1>
+            </div>
+          )}
 
-                  <div className="flex items-center gap-2">
-                    <div className="rounded-[6px]  bg-mediumblue px-[3px] pt-1  border-2  border-semiblue">
-                      <img
-                        src={avatar2}
-                        alt="app logo"
-                        className="object-contain w-[18px]  h-[18px]  mb-[-0.5px]"
-                      />
-                    </div>
-                    <div
-                      onClick={handleGetAgendaSlug}
-                      className="contact-name "
-                    >
-                      {agenda}
+          {/* LIST OF AGENDAS */}
+          <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 ">
+            {agendaList &&
+              agendaList.map((agenda, value) => (
+                <div className="max-sm:mb-4" key={value}>
+                  <div className="flex justify-between items-center px-3 sm:px-6 py-3 sm:py-5 rounded-t-lg sm:rounded-t-xl border-b-[3px] sm:border-b-[6px] border-b-blue bg-header w-[100%] cursor-pointer">
+                    {/*Content left*/}
+
+                    <div className="flex items-center gap-2">
+                      <div className="rounded-[6px]  bg-mediumblue px-[3px] pt-1  border-2  border-semiblue">
+                        <img
+                          src={avatar2}
+                          alt="app logo"
+                          className="object-contain w-[18px]  h-[18px]  mb-[-0.5px]"
+                        />
+                      </div>
+                      <div
+                        onClick={handleGetAgendaSlug}
+                        className="contact-name "
+                      >
+                        {agenda}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+          </div>
         </div>
       </div>
     </>

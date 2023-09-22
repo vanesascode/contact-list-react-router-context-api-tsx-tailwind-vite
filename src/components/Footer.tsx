@@ -1,7 +1,9 @@
 const Footer = () => {
   return (
-    <div id="about">
-      <div className=" bg-orange p-nav space-between flex items-center">
+    <div id="about" className="  fixed inset-x-0 bottom-0">
+      {" "}
+      {/**sm:max-container */}
+      <div className=" bg-orange p-nav space-between flex items-center ">
         {/*TOP*/}
 
         <ul className="flex-1 f-center sm:gap-7 gap-5 links-nav">
@@ -41,9 +43,7 @@ const Footer = () => {
           </li>
         </ul>
       </div>
-
       {/*BOTTOM */}
-
       <div className="f-center gap-2 cursor-pointer p-nav bg-black ">
         <p className="signature text-shadow capitalize ">
           <a

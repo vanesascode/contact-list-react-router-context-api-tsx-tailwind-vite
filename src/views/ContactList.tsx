@@ -39,8 +39,8 @@ const ContactList = () => {
 
   return (
     <>
-      <div className="bg-box relative">
-        <div className=" ">
+      <div className="bg-box ">
+        <div className="sm:max-container">
           {!agendaNameSlug && <div>Loading...</div>}
           {contactList && contactList.length === 0 && (
             <h1 className="capitalize title text-center mb-[130px]">
@@ -65,24 +65,24 @@ const ContactList = () => {
             onClick={handleCreateContact}
             className="fixed right-[10%] top-[70%] hidden max-sm:block"
           />
-        </div>
 
-        {/*DELETE AGENDA*/}
-
-        <div
-          onClick={() => setModalEliminateAgenda(true)}
-          className="cursor-pointer flex justify-start sm:justify-center gap-2 mt-[100px] mb-1"
-        >
-          <img
-            src={deletePic}
-            alt="delete contact"
-            className="w-[30px] h-[30px]"
-          />
-          <p className="contact-name capitalize">
-            Delete {agendaNameSlug} agenda
-          </p>
+          <div
+            onClick={() => setModalEliminateAgenda(true)}
+            className="cursor-pointer flex justify-start sm:justify-center gap-2 mt-[100px] mb-1"
+          >
+            <img
+              src={deletePic}
+              alt="delete contact"
+              className="w-[30px] h-[30px]"
+            />
+            <p className="contact-name capitalize">
+              Delete {agendaNameSlug} agenda
+            </p>
+          </div>
         </div>
       </div>
+
+      {/*DELETE AGENDA*/}
     </>
   );
 };

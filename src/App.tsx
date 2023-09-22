@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import ModalEliminateAgenda from "./components/ModalEliminateAgenda";
 // import ModalEliminateContact from "./components/ModalEliminateContact";
 import AlertChooseAgenda from "./components/AlertChooseAgenda.tsx";
+import { Navigate } from "react-router-dom";
 
 // ROUTES AND CONTEXT
 
@@ -42,7 +43,7 @@ function App() {
           </div>
         )}
 
-        <div className="sm:max-container">
+        <div>
           <Navbar />
           <Routes>
             <Route path="/" element={<Agendas />} />
@@ -50,6 +51,7 @@ function App() {
             <Route path="/newagenda" element={<NewAgenda />} />
             <Route path="/agenda" element={<Agendas />} />
             <Route path="/agenda/:agendaNameSlug" element={<ContactList />} />
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
 
           <Footer />
